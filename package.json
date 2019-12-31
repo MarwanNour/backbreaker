@@ -10,7 +10,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.startCodingSession"
+		"onCommand:extension.startCodingSession",
+		"onCommand:extension.stopCodingSession"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -18,6 +19,10 @@
 			{
 				"command": "extension.startCodingSession",
 				"title": "Start Coding Session"
+			},
+			{
+				"command": "extension.stopCodingSession",
+				"title": "Stop Coding Session"
 			}
 		]
 	},

@@ -13,7 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
 	var isStarted = false;
 	var myTimer: NodeJS.Timeout;
 	var isPaused = false;
-	var minuteInterv = 0.2;		// Change this value later (default value = 30)
+	var minuteInterv = 50;		// Change this value later (default value = 50)
 
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand

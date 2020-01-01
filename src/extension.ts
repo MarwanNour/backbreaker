@@ -12,6 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	var isStarted = false;
 	var myTimer: NodeJS.Timeout;
+	var isPaused = false;
 
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
@@ -34,16 +35,12 @@ export function activate(context: vscode.ExtensionContext) {
 			console.log("Coding Session started at: " + hoursNow.toString() + ":" + minutesNow.toString());
 			vscode.window.showInformationMessage("Coding Session started at: " + hoursNow.toString() + ":" + minutesNow.toString());
 
-			var minuteInterv = 0.2;		// Change this value later
+			var minuteInterv = 0.2;		// Change this value later (default value = 30)
 			var intervCounter = 1;		// Intervals Counter
 
 			myTimer = setInterval(() => {
-				// var newDate = new Date();
-				// var newHours = newDate.getHours();
-				// var newMinutes = newDate.getMinutes();
-				// console.log("Time Now : " + newHours.toString() + ":" + newMinutes.toString() +"\n" + "You should take a brake");
-				// vscode.window.showInformationMessage("Time Now : " + newHours.toString() + ":" + newMinutes.toString() + "\n" + "You should take a brake");
-				vscode.window.showInformationMessage("You've been coding for: " + (minuteInterv * intervCounter) + " minutes. You should take a break");
+				console.log("You've been coding for: " + (minuteInterv * intervCounter) + " minutes straight. You should take a break");
+				vscode.window.showInformationMessage("You've been coding for: " + (minuteInterv * intervCounter) + " minutes straight. You should take a break");
 				intervCounter++;
 			}, 1000 * 60 * minuteInterv);
 		}
@@ -58,18 +55,44 @@ export function activate(context: vscode.ExtensionContext) {
 		else {
 			// set isStarted to false to indicate that the session has stopped
 			isStarted = false;
-
 			// clear timer
 			clearInterval(myTimer);
-
-
 			console.log("Coding Session stopped");
 			vscode.window.showInformationMessage("Coding Session stopped");
 		}
 	});
 
+	let disposableBreak = vscode.commands.registerCommand('extension.startBreak', ()=>{
+		// clear timer ?
+		// pause timer ?
+		// log it
+		if (isStarted == false) {
+			console.log("There is no active session, cannot take a break");
+			vscode.window.showInformationMessage("There is no active session, cannot take a break");
+		}else{
+
+			// set isPaused to true to indicate that the session is paused
+			isPaused = true;
+
+			var dateNow = new Date();
+			var hoursNow = dateNow.getHours();
+			var minutesNow = dateNow.getMinutes();
+			
+			console.log("Break started at: " + hoursNow.toString() + ":" + minutesNow.toString());
+			vscode.window.showInformationMessage("Break started at: " + hoursNow.toString() + ":" + minutesNow.toString());
+			
+			clearInterval(myTimer);
+		}
+	});
+
+	let disposableResume = vscode.commands.registerCommand('extension.resumeCodingSession', () => {
+
+	});
+
 	context.subscriptions.push(disposableStart);
 	context.subscriptions.push(disposableStop);
+	context.subscriptions.push(disposableBreak);
+	context.subscriptions.push(disposableResume);
 }
 
 // this method is called when your extension is deactivated

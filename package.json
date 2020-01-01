@@ -11,18 +11,28 @@
 	],
 	"activationEvents": [
 		"onCommand:extension.startCodingSession",
-		"onCommand:extension.stopCodingSession"
+		"onCommand:extension.stopCodingSession",
+		"onCommand:extension.startBreak",
+		"onCommand:extension.resumeCodingSession"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "extension.startCodingSession",
-				"title": "Start Coding Session"
+				"title": "BackBreaker: Start Coding Session"
 			},
 			{
 				"command": "extension.stopCodingSession",
-				"title": "Stop Coding Session"
+				"title": "BackBreaker: Stop Coding Session"
+			},
+			{
+				"command": "extension.startBreak",
+				"title": "BackBreaker: Take a Break"
+			},
+			{
+				"command": "extension.resumeCodingSession",
+				"title": "BackBreaker: Resume Coding Session"
 			}
 		]
 	},

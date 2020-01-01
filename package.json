@@ -3,6 +3,7 @@
 	"displayName": "BackBreaker",
 	"description": "Reminds you to take breaks during coding sessions",
 	"version": "0.0.1",
+	"publisher": "MarwanNour",
 	"engines": {
 		"vscode": "^1.41.0"
 	},

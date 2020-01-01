@@ -4,6 +4,7 @@
 	"description": "Reminds you to take breaks during coding sessions",
 	"version": "0.0.1",
 	"publisher": "MarwanNour",
+	"repository": "https://github.com/MarwanNour/backbreaker",
 	"engines": {
 		"vscode": "^1.41.0"
 	},
